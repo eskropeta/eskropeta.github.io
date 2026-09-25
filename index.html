@@ -1,348 +1,643 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enzo Skropeta — Technicien support IT</title>
-<meta name="description" content="Portfolio d'Enzo Skropeta, technicien support IT à Rouen, en préparation du BTS SIO SISR, à la recherche d'une alternance à partir de septembre 2026.">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Enzo Skropeta</title>
+<meta name="description" content="Portfolio d'Enzo Skropeta, étudiant en BTS SIO SISR à Rouen : parcours, projets Active Directory et veille technologique en cybersécurité.">
+<meta property="og:title" content="Enzo Skropeta, technicien systèmes et réseaux">
+<meta property="og:description" content="BTS SIO SISR, deux ans de support chez Ecritel. Recherche d'alternance en support et infra.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#EDEFF2;
+  --surface:#F7F8FA;
+  --ink:#141920;
+  --muted:#4F5968;
+  --line:#CDD2DA;
+  --accent:#2447D6;
+  --accent-soft:#DCE3FB;
+  --on-accent:#F7F8FA;
+  --shade:rgba(20,25,32,.10);
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --r:14px;
+  --gut:clamp(16px,4vw,48px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1319;--surface:#161B23;--ink:#E7EAF0;--muted:#9AA4B3;
+    --line:#2A313C;--accent:#8198FF;--accent-soft:#1D2644;--on-accent:#0F1319;--shade:rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1319;--surface:#161B23;--ink:#E7EAF0;--muted:#9AA4B3;
+  --line:#2A313C;--accent:#8198FF;--accent-soft:#1D2644;--on-accent:#0F1319;--shade:rgba(0,0,0,.35);
+}
 
-<link rel="stylesheet" href="style.css">
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding-inline:var(--gut);overflow-x:hidden}
+.wrap{max-width:1180px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0}
+h2,.page-title{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:800;letter-spacing:-0.03em}
+h3{font-size:1.25rem;font-weight:700;letter-spacing:-0.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.mono{font-family:var(--mono);font-size:.82rem}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-inline:calc(-1*var(--gut));padding-inline:var(--gut);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-bottom-color:var(--line)}
+.nav-in{max-width:1180px;margin-inline:auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--accent);display:inline-block;transition:transform .5s var(--ease)}
+.logo:hover span{transform:translateY(-4px) scale(1.4)}
+.links{display:flex;gap:clamp(12px,2.5vw,28px);font-size:.95rem}
+.links a{text-decoration:none;color:var(--muted);position:relative;transition:color .2s}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.links a:hover,.links a[aria-current="page"]{color:var(--ink)}
+.links a:hover::after,.links a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.burger{display:none;font:inherit;font-weight:600;font-size:.9rem;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:7px 16px;cursor:pointer}
+@media (max-width:720px){
+  .burger{display:inline-flex}
+  .links{position:absolute;left:0;right:0;top:64px;flex-direction:column;gap:0;background:var(--surface);border-block:1px solid var(--line);padding:8px var(--gut) 16px;display:none}
+  .links.open{display:flex}
+  .links a{padding:12px 0;font-size:1.05rem;border-bottom:1px solid var(--line)}
+  .links a:last-child{border-bottom:0}
+  .links a::after{display:none}
+  .links a[aria-current="page"]{color:var(--accent)}
+}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font:inherit;font-weight:600;font-size:.95rem;text-decoration:none;white-space:nowrap;position:relative;overflow:hidden;isolation:isolate;cursor:pointer;transition:color .3s,border-color .3s}
+.btn:active{scale:.97}
+.btn .arr{display:inline-block;transition:transform .45s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-main{background:var(--accent);color:var(--on-accent);border:0}
+.btn-main::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .5s var(--ease);z-index:-1}
+.btn-main:hover::before{transform:none}
+.btn-main:hover{color:var(--bg)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink);background:none}
+.btn-ghost:hover{border-color:var(--ink)}
+
+/* hero */
+.hero{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,72px);align-items:center;padding-block:clamp(40px,7vw,88px) clamp(48px,7vw,96px)}
+.hero::before{content:"";position:absolute;top:-64px;bottom:0;left:calc(50% - 50vw);width:100vw;z-index:-1;pointer-events:none;background-image:radial-gradient(var(--line) 1.2px,transparent 1.6px);background-size:24px 24px;-webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent);mask-image:linear-gradient(to bottom,#000 45%,transparent)}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;letter-spacing:-0.035em}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .w > span{display:inline-block}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .sub{margin-top:22px;font-size:1.12rem;color:var(--muted);max-width:44ch}
+.ctas{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.status{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;font-family:var(--mono);font-size:.78rem;padding:6px 14px 6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--ink)}
+.live{width:8px;height:8px;border-radius:50%;background:var(--accent);position:relative}
+.live::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent)}
+
+/* topology */
+.topo{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(14px,2vw,22px);box-shadow:0 30px 60px -34px var(--shade)}
+.topo-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.topo-head strong{font-family:var(--display);font-size:1.05rem}
+.topo svg{display:block;width:100%;height:auto}
+.topo .frame{fill:none;stroke:var(--line);stroke-dasharray:5 5}
+.topo .wire{stroke:var(--muted);stroke-width:1.4;fill:none;opacity:.7}
+.topo .wire.rep{stroke:var(--accent);stroke-dasharray:6 5;opacity:1}
+.topo .node{fill:var(--bg);stroke:var(--line);transition:stroke .3s}
+.topo .node.dc{fill:var(--accent-soft);stroke:var(--accent)}
+.topo g.n:hover .node{stroke:var(--accent)}
+.topo .t1{fill:var(--ink);font-family:var(--display);font-weight:700;font-size:15px}
+.topo .t2{fill:var(--muted);font-family:var(--mono);font-size:11px}
+.topo .tf{fill:var(--muted);font-family:var(--mono);font-size:11px}
+.topo .tr{fill:var(--accent);font-family:var(--mono);font-size:11px}
+.topo .pkt{fill:var(--accent)}
+.topo .ring{fill:none;stroke:var(--accent);opacity:0}
+
+/* sections */
+section.block{padding-block:clamp(64px,9vw,120px)}
+.page-head{padding-block:clamp(40px,7vw,88px) 0}
+.lede{margin-top:14px;color:var(--muted);max-width:60ch;font-size:1.05rem}
+.more{margin-top:32px}
+
+/* timeline */
+.timeline{margin-top:44px}
+.step{display:grid;grid-template-columns:190px 1fr;gap:28px;padding-block:28px;position:relative}
+.step::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line);transform-origin:left}
+.step:first-child::before{display:none}
+.step:first-child{padding-top:0}
+.step .when{font-family:var(--mono);font-size:.85rem;color:var(--muted);padding-top:4px;font-variant-numeric:tabular-nums}
+.step h3{transition:color .3s}
+.step:hover h3{color:var(--accent)}
+.step .where{color:var(--accent);font-weight:600;font-size:.95rem;margin-top:4px}
+.step p.desc{margin-top:10px;color:var(--muted);max-width:62ch}
+@media (max-width:700px){.step{grid-template-columns:1fr;gap:6px}}
+
+/* bento */
+.bento{margin-top:44px;display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cell{position:relative;overflow:hidden;border-radius:var(--r);padding:clamp(20px,2.4vw,30px);background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;transition:transform .5s var(--ease),border-color .3s}
+.cell:hover{transform:translateY(-4px);border-color:var(--accent)}
+.cell p{color:var(--muted)}
+.c-big{grid-column:span 4;background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.c-big p,.c-big .tags span{color:var(--on-accent)}
+.c-big h3{font-size:clamp(1.5rem,2.4vw,2rem)}
+.c-side{grid-column:span 2;background:var(--accent-soft);border-color:transparent}
+.c-third{grid-column:span 2}
+.c-half{grid-column:span 3}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.tags span{font-family:var(--mono);font-size:.75rem;padding:4px 10px;border-radius:999px;border:1px solid currentColor;color:var(--muted)}
+.disk{display:flex;gap:6px;margin-top:4px}
+.disk i{flex:1;height:34px;border-radius:6px;border:1px solid var(--accent);position:relative;overflow:hidden}
+.disk i::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,var(--accent) 0 3px,transparent 3px 9px);opacity:.55}
+.disk i:nth-child(3)::after{background:var(--accent);opacity:.35}
+.shares{display:flex;flex-wrap:wrap;gap:6px}
+.shares code{font-family:var(--mono);font-size:.78rem;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 8px;color:var(--ink)}
+.ticket{font-family:var(--mono);font-size:.78rem;display:grid;gap:6px}
+.ticket div{display:flex;justify-content:space-between;gap:10px;padding:6px 10px;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
+.ticket b{font-weight:500;color:var(--accent)}
+@media (max-width:860px){.c-big,.c-side,.c-half,.c-third{grid-column:span 6}}
+
+/* skills */
+.skills{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px)}
+.skills h3{font-size:1.1rem;padding-bottom:12px;margin-bottom:16px;position:relative}
+.skills h3::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--accent);transform-origin:left}
+.skills ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.skills li{color:var(--muted);transition:transform .35s var(--ease),color .3s}
+.skills li:hover{transform:translateX(6px);color:var(--ink)}
+.skills li b{color:var(--ink);font-weight:600}
+@media (max-width:780px){.skills{grid-template-columns:1fr}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,64px);align-items:end}
+.contact h2{font-size:clamp(2.4rem,5.6vw,4rem)}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.coords{display:grid;gap:14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);transition:border-color .3s}
+.row:hover{border-color:var(--accent)}
+.row .k{font-size:.85rem;color:var(--muted)}
+.row .v{font-family:var(--mono);font-size:.88rem;user-select:all;word-break:break-all}
+.copy{font:inherit;font-size:.82rem;font-weight:600;border:0;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:7px 14px;cursor:pointer;flex-shrink:0}
+@media (max-width:780px){.contact{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
+
+/* veille */
+.veille-top{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px}
+.top5{margin-top:32px;border:1px solid var(--accent);border-radius:var(--r);background:var(--surface);padding:clamp(20px,3vw,32px)}
+.top5-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px;margin-bottom:8px}
+.top5-head h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+.top5 ol{list-style:none;margin:0;padding:0;counter-reset:n}
+.top5 li{counter-increment:n;display:grid;grid-template-columns:44px 1fr;gap:4px 16px;padding-block:18px;border-top:1px solid var(--line)}
+.top5 li:first-child{border-top:0}
+.top5 li::before{content:counter(n);grid-row:span 3;font-family:var(--display);font-weight:800;font-size:1.8rem;line-height:1;color:var(--accent)}
+.top5 li a{font-weight:600;text-decoration-color:var(--accent);text-underline-offset:3px}
+.top5 li a:hover{color:var(--accent)}
+.top5 .meta{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.top5 li p{color:var(--muted);max-width:70ch}
+
+.sources{margin-top:44px;display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(28px,4vw,48px) clamp(24px,5vw,64px)}
+.group h3{font-size:1.1rem;margin-bottom:6px}
+.group > p{color:var(--muted);font-size:.95rem;margin-bottom:10px}
+.src{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;padding:12px 0;border-top:1px solid var(--line);text-decoration:none}
+.src strong{font-weight:600;transition:color .2s}
+.src span{grid-column:1;font-size:.92rem;color:var(--muted)}
+.src .dom{grid-column:2;grid-row:1 / span 2;font-family:var(--mono);font-size:.75rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+.src .dom i{font-style:normal;color:var(--accent);transition:transform .4s var(--ease)}
+.src:hover strong{color:var(--accent)}
+.src:hover .dom i{transform:translate(3px,-3px)}
+@media (max-width:780px){.sources{grid-template-columns:1fr}.src .dom{display:none}}
+
+.threats{margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.threat{background:var(--surface);padding:22px 24px;display:grid;gap:8px;align-content:start}
+.threat h3{font-size:1.05rem}
+.threat p{color:var(--muted);font-size:.95rem}
+.threat .fix{font-size:.9rem;color:var(--ink)}
+.threat .fix b{color:var(--accent);font-weight:600}
+
+footer{padding-block:32px 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ===== motion ===== */
+@media (prefers-reduced-motion:no-preference){
+  .hero h1 .w > span{animation:up 1s var(--ease) both;animation-delay:calc(var(--i) * 70ms + 100ms)}
+  @keyframes up{from{transform:translateY(105%)}to{transform:none}}
+  .rise{animation:rise .9s var(--ease) both}
+  .d2{animation-delay:.45s}.d3{animation-delay:.6s}.d4{animation-delay:.35s}
+  @keyframes rise{from{transform:translateY(22px);opacity:.001}to{transform:none;opacity:1}}
+  .live::after{animation:ping 1.8s var(--ease) infinite}
+  @keyframes ping{from{transform:scale(1);opacity:.7}to{transform:scale(2.8);opacity:0}}
+  .topo .wire.rep{animation:flow 1.4s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-22}}
+  .top5:not([hidden]){animation:rise .6s var(--ease) both}
+  @supports (animation-timeline: view()){
+    .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+    @keyframes reveal{from{opacity:.35;transform:translateY(36px)}to{opacity:1;transform:none}}
+    .step::before,.skills h3::after{animation:draw linear both;animation-timeline:view();animation-range:entry 10% cover 35%}
+    @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .topo .pkt,.topo .ring{display:none}
+}
+</style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="container">
-    <a href="#top" class="logo">Enzo<span>.</span>Skropeta</a>
-    <nav>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#top">Accueil</a></li>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#competences">Compétences</a></li>
-        <li><a href="#experience">Expérience</a></li>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
-      <span></span>
-    </button>
+<nav id="nav">
+  <div class="nav-in">
+    <a class="logo" href="#top">Enzo<span>.</span></a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="links">Menu</button>
+    <div class="links" id="links">
+      <a href="#parcours" data-for="accueil">Parcours</a>
+      <a href="#projets" data-for="projets">Projets</a>
+      <a href="#veille" data-for="veille">Veille</a>
+      <a href="#competences" data-for="accueil">Compétences</a>
+      <a href="#contact" data-for="accueil">Contact</a>
+    </div>
   </div>
-</header>
+</nav>
 
-<main id="top">
+<div class="wrap" lang="fr">
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-eyebrow">
-        <span class="badge badge-available"><span class="badge-dot"></span>Recherche une alternance à partir de septembre 2026</span>
-      </div>
-      <h1>Enzo Skropeta</h1>
-      <p class="role">Technicien support IT · Rouen</p>
-      <p class="lead">
-        Deux ans d'expérience en support informatique chez Ecritel. Je recherche une alternance en support IT à partir de septembre 2026, pour préparer le BTS SIO option SISR à l'IRIS de Rouen.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Me contacter</a>
-        <a href="#experience" class="btn btn-secondary">Voir mon expérience</a>
-        <div class="icon-links">
-          <a href="https://www.linkedin.com/in/enzoskropeta/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.94 6 2.5 6S0 4.88 0 3.5 1.04 1 2.48 1 4.98 2.12 4.98 3.5zM.24 8.25h4.5V23H.24V8.25zm7.5 0h4.31v2.02h.06c.6-1.13 2.07-2.33 4.26-2.33 4.56 0 5.4 3 5.4 6.9V23h-4.5v-6.35c0-1.51-.03-3.46-2.11-3.46-2.11 0-2.43 1.65-2.43 3.35V23h-4.5V8.25z"/></svg>
-          </a>
-          <a href="https://github.com/eskropeta" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.8 1.19 1.82 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.21.66.8.55A10.51 10.51 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
-          </a>
-          <a href="mailto:enzo.skropeta@outlook.fr" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v14H3V5z"/><path d="M3 6l9 7 9-7"/></svg>
-          </a>
-        </div>
+<!-- ============ ACCUEIL ============ -->
+<main data-view="accueil" id="top">
+  <header class="hero">
+    <div>
+      <span class="status rise"><span class="live"></span>Recherche d'alternance en support et infra</span>
+      <h1 id="title" aria-label="Enzo Skropeta, technicien systèmes et réseaux">Enzo Skropeta,<br>technicien <em>systèmes et réseaux</em></h1>
+      <p class="sub rise d2">Étudiant en BTS SIO option SISR à Rouen, avec deux ans de support utilisateurs chez Ecritel.</p>
+      <div class="ctas rise d3">
+        <a class="btn btn-main" href="#contact">Me contacter <span class="arr">&rarr;</span></a>
+        <a class="btn btn-ghost" href="#projets">Voir mes projets</a>
       </div>
     </div>
 
-    <div class="stats-strip reveal">
-      <div class="container stats-grid">
-        <div class="stat">
-          <span class="stat-value">2 ans</span>
-          <span class="stat-label">Expérience en support IT</span>
+    <div class="rise d4">
+      <figure class="topo">
+        <div class="topo-head">
+          <strong>Mon lab : IRIS.local</strong>
+          <span class="mono" style="color:var(--muted)">Hyper-V</span>
         </div>
-        <div class="stat">
-          <span class="stat-value">~20/sem.</span>
-          <span class="stat-label">Tickets traités</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">100–200</span>
-          <span class="stat-label">Collaborateurs accompagnés</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">2026</span>
-          <span class="stat-label">Alternance recherchée dès</span>
-        </div>
-      </div>
+        <svg viewBox="0 0 520 380" role="img" aria-label="Schéma du lab Active Directory IRIS.local : un contrôleur de domaine, deux serveurs de fichiers répliqués en DFS-R et un poste client Windows 11">
+          <rect class="frame" x="6" y="6" width="508" height="368" rx="12"/>
+          <text class="tf" x="22" y="30">domaine IRIS.local</text>
+          <path id="p-a" class="wire" d="M260 110 V150 H110 V200"/>
+          <path id="p-b" class="wire" d="M260 110 V150 H410 V200"/>
+          <path id="p-c" class="wire" d="M260 110 V290"/>
+          <path class="wire rep" d="M190 235 H330"/>
+          <text class="tr" x="240" y="226">DFS-R</text>
+
+          <circle class="pkt" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0s"><mpath href="#p-a"/></animateMotion></circle>
+          <circle class="pkt" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.9s"><mpath href="#p-b"/></animateMotion></circle>
+          <circle class="pkt" r="4"><animateMotion dur="2s" repeatCount="indefinite" begin="1.5s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#p-c"/></animateMotion></circle>
+          <circle class="pkt" r="3.5"><animateMotion dur="1.8s" repeatCount="indefinite" path="M190 235 H330"/></circle>
+
+          <circle class="ring" cx="260" cy="79" r="30">
+            <animate attributeName="r" values="30;70" dur="2.6s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".5;0" dur="2.6s" repeatCount="indefinite"/>
+          </circle>
+
+          <g class="n"><rect class="node dc" x="170" y="48" width="180" height="62" rx="10"/>
+          <text class="t1" x="186" y="75">DC2</text>
+          <text class="t2" x="186" y="96">AD DS, DNS, GPO</text></g>
+          <g class="n"><rect class="node" x="30" y="200" width="160" height="70" rx="10"/>
+          <text class="t1" x="46" y="228">ServeurStockage</text>
+          <text class="t2" x="46" y="250">RAID 5, partages</text></g>
+          <g class="n"><rect class="node" x="330" y="200" width="160" height="70" rx="10"/>
+          <text class="t1" x="346" y="228">Serveur fichiers 2</text>
+          <text class="t2" x="346" y="250">réplica DFS-R</text></g>
+          <g class="n"><rect class="node" x="180" y="290" width="160" height="62" rx="10"/>
+          <text class="t1" x="196" y="317">Client Windows 11</text>
+          <text class="t2" x="196" y="338">OU Iris, GPO</text></g>
+        </svg>
+      </figure>
     </div>
-  </section>
+  </header>
 
-  <!-- À propos -->
-  <section class="section" id="apropos">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow">01 — Profil</p>
-        <h2>À propos</h2>
-      </div>
-      <div class="about-text reveal">
-        <p>Je me suis intéressé à l'informatique très tôt, en observant mon oncle travailler sur ses machines. Cette curiosité m'a poussé à monter mon propre PC et à m'entraîner sur Kali Linux et d'autres distributions, notamment autour du pentesting.</p>
-        <p>Cet intérêt m'a naturellement conduit vers le support informatique. Après deux ans chez <strong>Ecritel</strong>, société d'infogérance basée à Clichy, à résoudre les problèmes techniques du quotidien pour les collaborateurs d'une structure de 100 à 200 personnes, je recherche aujourd'hui une <strong>alternance en support IT</strong> qui me permettra de préparer le BTS SIO option SISR à l'IRIS de Rouen.</p>
-        <p>Mon objectif est de poursuivre vers l'administration systèmes et réseaux, avec en ligne de mire la cybersécurité.</p>
-      </div>
+  <section class="block" id="parcours">
+    <div class="reveal">
+      <h2>Parcours</h2>
+      <p class="lede">Une alternance où j'ai appris sur le terrain, et une formation qui me donne les bases pour aller vers l'infra.</p>
     </div>
-  </section>
-
-  <!-- Compétences -->
-  <section class="section section-alt" id="competences">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow">02 — Compétences</p>
-        <h2>Compétences techniques</h2>
-      </div>
-
-      <div class="skills-grid reveal">
-
-        <div class="skill-card">
-          <h3>Systèmes d'exploitation</h3>
-          <div class="skill-item">
-            <span class="skill-name">Windows 10 / 11</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Windows Server</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Notions</span>
-              <span class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Linux (Kali, Debian)</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Débutant</span>
-              <span class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-            </span>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h3>Réseaux &amp; annuaire</h3>
-          <div class="skill-item">
-            <span class="skill-name">Active Directory (comptes, droits, permissions)</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">TCP/IP, DNS, DHCP</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Notions</span>
-              <span class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">VPN</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Notions</span>
-              <span class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-            </span>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h3>Outils &amp; logiciels</h3>
-          <div class="skill-item">
-            <span class="skill-name">ManageEngine (Desktop Central, ServiceDesk Plus)</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Microsoft Teams</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Office 365</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h3>Matériel</h3>
-          <div class="skill-item">
-            <span class="skill-name">Diagnostic et remplacement de composants</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Imprimantes réseau et périphériques</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Inventaire et suivi de parc</span>
-            <span class="skill-level">
-              <span class="skill-level-label">Intermédiaire</span>
-              <span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span>
-            </span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Expérience -->
-  <section class="section" id="experience">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow">03 — Parcours</p>
-        <h2>Expérience &amp; formation</h2>
-      </div>
-
-      <div class="ticket reveal">
-        <div class="ticket-header">
-          <div>
-            <p class="ticket-id">ECRITEL / SUPPORT-N1</p>
-            <p class="ticket-title">Technicien support IT</p>
-            <p class="ticket-company">Ecritel, infogérance — Clichy (100 à 200 collaborateurs)</p>
-          </div>
-          <div class="ticket-meta">
-            <span class="ticket-dates">Novembre 2023 à juin 2025</span>
-            <span class="badge badge-status">Terminé</span>
-          </div>
-        </div>
-        <div class="ticket-body">
-          <ul>
-            <li>Traitement d'une vingtaine de tickets par semaine pour les collaborateurs internes, via l'outil de ticketing développé en interne par l'entreprise</li>
-            <li>Résolution d'incidents matériels (postes de travail, imprimantes), réseau et applicatifs, y compris les mises à jour logicielles</li>
-            <li>Gestion des comptes utilisateurs sous Active Directory : création, gestion des droits et des permissions</li>
-            <li>Suivi et mise à jour de l'inventaire du parc informatique avec ManageEngine et Excel, gestion des entrées et sorties de matériel</li>
-            <li>Support quotidien et prise en main à distance via Microsoft Teams et ManageEngine Desktop Central</li>
-          </ul>
-          <div class="ticket-tags">
-            <span class="tag">Active Directory</span>
-            <span class="tag">ManageEngine</span>
-            <span class="tag">Teams</span>
-            <span class="tag">Office 365</span>
-            <span class="tag">Ticketing interne</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="formation reveal">
+    <div class="timeline">
+      <div class="step reveal">
+        <div class="when">2023 - 2027</div>
         <div>
-          <p class="formation-title">BTS SIO — option SISR</p>
-          <p class="formation-sub">Alternance visée, IRIS Rouen · Session 2027</p>
+          <h3>BTS SIO option SISR</h3>
+          <div class="where">IRIS Paris, puis IRIS Rouen</div>
+          <p class="desc">Administration de systèmes et de réseaux : Windows Server, Active Directory, services réseau, virtualisation.</p>
         </div>
-        <span class="badge badge-status in-progress">Recherche en cours</span>
       </div>
-
+      <div class="step reveal">
+        <div class="when">sept. 2023 - juil. 2025</div>
+        <div>
+          <h3>Technicien support en alternance</h3>
+          <div class="where">Ecritel (infogérance), Clichy</div>
+          <p class="desc">Support des collaborateurs internes : incidents de niveau 1, installation des postes, gestion de l'inventaire matériel. J'ai assuré le support seul pendant environ 6 mois après le départ de mon tuteur.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="when">2020 - 2023</div>
+        <div>
+          <h3>Bac STMG Mercatique</h3>
+          <div class="where">Lycée Louise Michel, Gisors</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Projets -->
-  <section class="section section-alt" id="projets">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow">04 — Projets</p>
-        <h2>Projets techniques</h2>
-      </div>
-      <div class="empty-state reveal">
-        <p>Cette section accueillera mes projets techniques (labo réseau, scripts, environnements de test) au fur et à mesure de mon parcours en BTS. En attendant, vous pouvez consulter mes dépôts sur GitHub.</p>
-        <a href="https://github.com/eskropeta" target="_blank" rel="noopener" class="btn btn-secondary">Voir mon GitHub</a>
-      </div>
+  <section class="block" id="apercu-projets">
+    <div class="reveal">
+      <h2>Ce que j'ai monté</h2>
+      <p class="lede">Deux projets pour se faire une idée. Le reste est sur la page Projets.</p>
     </div>
+    <div class="bento">
+      <article class="cell c-big reveal">
+        <h3>Domaine Active Directory IRIS.local</h3>
+        <p>Un domaine complet sous Hyper-V : contrôleur de domaine, OU par service, groupes de sécurité et postes clients intégrés.</p>
+        <div class="tags"><span>Windows Server</span><span>AD DS</span><span>Hyper-V</span></div>
+      </article>
+      <article class="cell c-side reveal">
+        <h3>GLPI</h3>
+        <p>Gestion de parc et suivi des tickets, travaillé pour l'épreuve E6.</p>
+        <div class="tags"><span>GLPI</span><span>ITSM</span></div>
+      </article>
+    </div>
+    <div class="more"><a class="btn btn-ghost" href="#projets">Voir mes projets <span class="arr">&rarr;</span></a></div>
   </section>
 
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow">05 — Contact</p>
-        <h2>Me contacter</h2>
-      </div>
-
-      <div class="contact-grid reveal">
-        <ul class="contact-list">
-          <li>
-            <span class="label">Email</span>
-            <a class="value" href="mailto:enzo.skropeta@outlook.fr">enzo.skropeta@outlook.fr</a>
-          </li>
-          <li>
-            <span class="label">LinkedIn</span>
-            <a class="value" href="https://www.linkedin.com/in/enzoskropeta/" target="_blank" rel="noopener">linkedin.com/in/enzoskropeta</a>
-          </li>
-          <li>
-            <span class="label">GitHub</span>
-            <a class="value" href="https://github.com/eskropeta" target="_blank" rel="noopener">github.com/eskropeta</a>
-          </li>
-          <li>
-            <span class="label">Localisation</span>
-            <span class="value">Rouen, France</span>
-          </li>
+  <section class="block" id="competences">
+    <h2 class="reveal">Compétences</h2>
+    <div class="skills">
+      <div class="reveal">
+        <h3>Systèmes</h3>
+        <ul>
+          <li><b>Windows Server</b>, AD DS et DNS</li>
+          <li><b>Stratégies de groupe</b> (GPO)</li>
+          <li><b>Hyper-V</b> et virtualisation</li>
+          <li><b>PowerShell</b> pour l'administration</li>
         </ul>
-
-        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact">
-          <p class="hidden-field">
-            <label>Ne pas remplir : <input name="bot-field"></label>
-          </p>
-
-          <div class="field">
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Envoyer</button>
-          <p class="form-note">Formulaire géré par Netlify Forms, envoyé directement par email.</p>
-        </form>
+      </div>
+      <div class="reveal">
+        <h3>Stockage et partages</h3>
+        <ul>
+          <li><b>RAID 5</b> avec Storage Spaces</li>
+          <li><b>Droits NTFS</b> et partages</li>
+          <li><b>DFS-R</b> pour la réplication</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3>Support</h3>
+        <ul>
+          <li><b>Incidents N1</b> et suivi des tickets</li>
+          <li><b>Déploiement</b> et préparation de postes</li>
+          <li><b>Inventaire</b> du parc matériel</li>
+        </ul>
       </div>
     </div>
   </section>
 
+  <section class="block" id="contact">
+    <div class="contact reveal">
+      <div>
+        <h2>Une alternance <em>à pourvoir</em> ?</h2>
+        <p class="lede">Je suis basé près de Rouen et je peux aussi me déplacer sur Paris.</p>
+      </div>
+      <div class="coords">
+        <div class="row">
+          <div><div class="k">E-mail</div><div class="v" id="mail">enzo.skropeta@outlook.fr</div></div>
+          <button class="copy" type="button" data-copy="mail">Copier</button>
+        </div>
+        <!-- LinkedIn : à rajouter quand le lien sera prêt -->
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>© 2026 Enzo Skropeta</p>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/enzoskropeta/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/eskropeta" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:enzo.skropeta@outlook.fr">Email</a>
+<!-- ============ PROJETS ============ -->
+<main data-view="projets" id="projets" hidden>
+  <header class="page-head">
+    <h1 class="page-title">Projets</h1>
+    <p class="lede">Ce que j'ai monté dans mon lab pour pratiquer, de la création du domaine jusqu'à la réplication des fichiers, plus GLPI pour la gestion de parc.</p>
+  </header>
+  <section class="block" style="padding-top:0">
+    <div class="bento">
+      <article class="cell c-big">
+        <h3>Domaine Active Directory IRIS.local</h3>
+        <p>Mise en place d'un domaine complet sous Hyper-V : contrôleur de domaine, OU par service, groupes de sécurité et postes clients intégrés. J'ai aussi dû reprendre les rôles FSMO après la suppression de l'ancien DC.</p>
+        <div class="tags"><span>Windows Server</span><span>AD DS</span><span>FSMO</span><span>Hyper-V</span></div>
+      </article>
+      <article class="cell c-side">
+        <h3>RAID 5 logiciel</h3>
+        <p>Pool de 3 disques avec Storage Spaces sur le serveur de fichiers.</p>
+        <div class="disk" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tags"><span>Storage Spaces</span></div>
+      </article>
+      <article class="cell c-third">
+        <h3>GPO_Restrictions_Iris</h3>
+        <p>Blocage des clés USB, fond d'écran imposé, verrouillage de session, installation de WinRAR par script de démarrage et raccourcis ciblés par groupe.</p>
+        <div class="tags"><span>GPMC</span><span>Ciblage par élément</span></div>
+      </article>
+      <article class="cell c-third">
+        <h3>Partages par service et DFS-R</h3>
+        <p>Un groupe AD et un dossier partagé par service, avec droits NTFS, puis réplication vers un second serveur.</p>
+        <div class="shares"><code>COMPTA</code><code>DRH</code><code>Direction</code><code>Commercial</code><code>DSI</code><code>Production</code></div>
+        <div class="tags"><span>NTFS</span><span>DFS-R</span></div>
+      </article>
+      <article class="cell c-third">
+        <h3>GLPI</h3>
+        <p>Étude de GLPI pour l'épreuve E6 : inventaire du parc, gestion des incidents et des demandes, suivi des contrats et des licences.</p>
+        <div class="ticket" aria-hidden="true">
+          <div><span>Incident</span><b>En cours</b></div>
+          <div><span>Demande</span><b>Nouveau</b></div>
+        </div>
+        <div class="tags"><span>GLPI</span><span>Gestion de parc</span></div>
+      </article>
     </div>
-  </div>
-</footer>
+  </section>
+</main>
 
-<script src="script.js"></script>
+<!-- ============ VEILLE ============ -->
+<main data-view="veille" id="veille" hidden>
+  <header class="page-head">
+    <div class="veille-top">
+      <div>
+        <h1 class="page-title">Veille technologique</h1>
+        <p class="lede">Mon sujet, c'est la cybersécurité. Je regarde surtout ce qui touche Active Directory, Windows Server et les outils que j'utilise dans mon lab.</p>
+      </div>
+      <button class="btn btn-main" id="top5-btn" type="button" aria-expanded="false" aria-controls="top5">Top 5 du mois <span class="arr">&rarr;</span></button>
+    </div>
+
+    <div class="top5" id="top5" hidden>
+      <div class="top5-head">
+        <h2>Septembre 2026</h2>
+        <span class="mono" style="color:var(--muted)">Sélection du 25/09/2026</span>
+      </div>
+      <ol>
+        <li>
+          <a href="https://www.it-connect.fr/ransomware-payload-gpo-active-directory-sans-chiffrement/" target="_blank" rel="noopener">Un ransomware paralyse une entreprise avec deux GPO</a>
+          <span class="meta">22/09 · IT-Connect</span>
+          <p>Le groupe PAYLOAD n'a chiffré aucun fichier : deux GPO liées à la racine du domaine ont suffi pour afficher la demande de rançon et couper le pare-feu. Ça montre pourquoi il faut surveiller qui peut créer des GPO.</p>
+        </li>
+        <li>
+          <a href="https://www.it-connect.fr/glpi-11-0-9-10-0-27-failles-securite-patch/" target="_blank" rel="noopener">GLPI 11.0.9 et 10.0.27 corrigent 12 failles</a>
+          <span class="meta">24/09 · IT-Connect</span>
+          <p>Dont une injection SQL exploitable sans être connecté. Teclib' annonce des mises à jour de sécurité toutes les deux semaines.</p>
+        </li>
+        <li>
+          <a href="https://www.cert.ssi.gouv.fr/actualite/CERTFR-2026-ACT-040/" target="_blank" rel="noopener">Cisco ISE : plusieurs failles notées 10 sur 10</a>
+          <span class="meta">21/09 · CERT-FR</span>
+          <p>Le bulletin de la semaine 38 liste aussi Oracle WebLogic et macOS au score maximal, avec des preuves de concept déjà publiques pour certaines.</p>
+        </li>
+        <li>
+          <a href="https://www.it-connect.fr/veeam-agent-windows-faille-cve-2026-32996-privileges-system/" target="_blank" rel="noopener">Veeam Agent pour Windows : élévation de privilèges vers SYSTEM</a>
+          <span class="meta">24/09 · IT-Connect</span>
+          <p>La CVE-2026-32996 permet à un simple utilisateur d'obtenir les droits SYSTEM. Un exploit est public, l'exploitation active n'est pas confirmée.</p>
+        </li>
+        <li>
+          <a href="https://www.it-connect.fr/shinyhunters-piratage-fbi-oracle-peoplesoft-zero-day/" target="_blank" rel="noopener">ShinyHunters revendique un vol de données au FBI</a>
+          <span class="meta">23/09 · IT-Connect</span>
+          <p>Le groupe dit avoir pris 2 à 3 To via une zero-day Oracle PeopleSoft et demande le retrait d'un rapport plutôt qu'une rançon.</p>
+        </li>
+      </ol>
+    </div>
+  </header>
+
+  <section class="block" id="sources">
+    <h2 class="reveal">Mes sources</h2>
+    <p class="lede reveal">Je suis les alertes officielles, je lis l'actu en français au quotidien et je regroupe tout dans un lecteur RSS.</p>
+    <div class="sources">
+      <div class="group reveal">
+        <h3>Alertes officielles</h3>
+        <p>Pour savoir quoi patcher en priorité.</p>
+        <a class="src" href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener"><strong>CERT-FR</strong><span>Alertes, avis et bulletin hebdo des vulnérabilités</span><em class="dom">cert.ssi.gouv.fr <i>&nearr;</i></em></a>
+        <a class="src" href="https://cyber.gouv.fr/" target="_blank" rel="noopener"><strong>ANSSI</strong><span>Guides d'hygiène et bonnes pratiques</span><em class="dom">cyber.gouv.fr <i>&nearr;</i></em></a>
+        <a class="src" href="https://www.cybermalveillance.gouv.fr/" target="_blank" rel="noopener"><strong>Cybermalveillance.gouv.fr</strong><span>Arnaques en cours, fiches pour les utilisateurs</span><em class="dom">cybermalveillance.gouv.fr <i>&nearr;</i></em></a>
+      </div>
+      <div class="group reveal">
+        <h3>Actu en français</h3>
+        <p>Pour suivre ce qui se passe, surtout côté Windows et infra.</p>
+        <a class="src" href="https://www.it-connect.fr/actualites/actu-securite/" target="_blank" rel="noopener"><strong>IT-Connect</strong><span>Actu sécu et tutos Windows Server</span><em class="dom">it-connect.fr <i>&nearr;</i></em></a>
+        <a class="src" href="https://www.lemondeinformatique.fr/securite-informatique-3.html" target="_blank" rel="noopener"><strong>Le Monde Informatique</strong><span>Rubrique sécurité</span><em class="dom">lemondeinformatique.fr <i>&nearr;</i></em></a>
+        <a class="src" href="https://www.lemagit.fr/" target="_blank" rel="noopener"><strong>LeMagIT</strong><span>Actu IT pro et cyberattaques en France</span><em class="dom">lemagit.fr <i>&nearr;</i></em></a>
+      </div>
+      <div class="group reveal">
+        <h3>Actu internationale</h3>
+        <p>Souvent les premiers à sortir une info, en anglais.</p>
+        <a class="src" href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener"><strong>BleepingComputer</strong><span>Ransomwares, failles, correctifs</span><em class="dom">bleepingcomputer.com <i>&nearr;</i></em></a>
+        <a class="src" href="https://thehackernews.com/" target="_blank" rel="noopener"><strong>The Hacker News</strong><span>Vulnérabilités et campagnes d'attaque</span><em class="dom">thehackernews.com <i>&nearr;</i></em></a>
+      </div>
+      <div class="group reveal">
+        <h3>Outils</h3>
+        <p>Pour ne pas avoir à tout ouvrir un par un.</p>
+        <a class="src" href="https://feedly.com/" target="_blank" rel="noopener"><strong>Feedly</strong><span>Lecteur RSS où je regroupe toutes ces sources</span><em class="dom">feedly.com <i>&nearr;</i></em></a>
+        <a class="src" href="https://www.google.com/alerts" target="_blank" rel="noopener"><strong>Google Alertes</strong><span>Alertes sur des mots-clés comme "Active Directory"</span><em class="dom">google.com/alerts <i>&nearr;</i></em></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="menaces" style="padding-top:0">
+    <h2 class="reveal">Les menaces que je surveille</h2>
+    <p class="lede reveal">Pour chaque menace, ce qu'on peut faire concrètement sur un parc comme celui de mon lab.</p>
+    <div class="threats reveal">
+      <div class="threat"><h3>Phishing</h3><p>Faux mails qui volent des identifiants.</p><p class="fix"><b>Parade :</b> MFA et sensibilisation des utilisateurs.</p></div>
+      <div class="threat"><h3>Ransomware</h3><p>Chiffrement ou blocage du SI contre rançon.</p><p class="fix"><b>Parade :</b> sauvegardes hors ligne, droits admin limités.</p></div>
+      <div class="threat"><h3>Force brute</h3><p>Tentatives de mots de passe en boucle.</p><p class="fix"><b>Parade :</b> verrouillage de compte par GPO, mots de passe longs.</p></div>
+      <div class="threat"><h3>Ingénierie sociale</h3><p>Se faire passer pour le support ou un chef.</p><p class="fix"><b>Parade :</b> procédure de vérification avant toute action.</p></div>
+      <div class="threat"><h3>Injection SQL</h3><p>Requêtes piégées sur une appli web.</p><p class="fix"><b>Parade :</b> mises à jour rapides, comme pour GLPI ce mois-ci.</p></div>
+      <div class="threat"><h3>Man-in-the-Middle</h3><p>Interception du trafic sur le réseau.</p><p class="fix"><b>Parade :</b> chiffrement (HTTPS, VPN), signature SMB.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Enzo Skropeta, BTS SIO SISR</span>
+  <span>Rouen, Normandie</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  try{ document.documentElement.lang = 'fr'; }catch(e){}
+
+  /* headline: split words for the staggered reveal */
+  var h1 = document.getElementById('title');
+  var i = 0;
+  function split(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(c){
+      if(c.nodeType === 3){
+        var frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(function(part){
+          if(!part) return;
+          if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); return; }
+          var w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden','true');
+          var s = document.createElement('span'); s.textContent = part; s.style.setProperty('--i', i++);
+          w.appendChild(s); frag.appendChild(w);
+        });
+        node.replaceChild(frag, c);
+      } else if(c.nodeType === 1 && c.tagName !== 'BR'){ split(c); }
+    });
+  }
+  split(h1);
+
+  /* pages */
+  var views = document.querySelectorAll('[data-view]');
+  var navLinks = document.querySelectorAll('#links a');
+  var titles = {accueil:'Enzo Skropeta', projets:'Projets | Enzo Skropeta', veille:'Veille technologique | Enzo Skropeta'};
+  var links = document.getElementById('links'), burger = document.getElementById('burger');
+  function closeMenu(){ links.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  function route(){
+    var h = location.hash.slice(1);
+    var view = (h === 'projets' || h === 'veille') ? h : 'accueil';
+    views.forEach(function(v){ v.hidden = v.dataset.view !== view; });
+    navLinks.forEach(function(a){
+      var on = view !== 'accueil' ? a.dataset.for === view : a.getAttribute('href') === '#' + h;
+      if(on) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    document.title = titles[view];
+    closeMenu();
+    requestAnimationFrame(function(){
+      if(view === 'accueil' && h && h !== 'top'){
+        var el = document.getElementById(h); if(el) el.scrollIntoView();
+      } else { window.scrollTo(0,0); }
+    });
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  burger.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* nav border once the page moves */
+  var nav = document.getElementById('nav');
+  var sentinel = document.createElement('div'); sentinel.style.height = '1px';
+  document.body.insertBefore(sentinel, nav);
+  new IntersectionObserver(function(en){ nav.classList.toggle('scrolled', !en[0].isIntersecting); }).observe(sentinel);
+
+  /* top 5 */
+  var t5b = document.getElementById('top5-btn'), t5 = document.getElementById('top5');
+  t5b.addEventListener('click', function(){
+    var open = t5.hidden;
+    t5.hidden = !open;
+    t5b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    t5b.firstChild.textContent = open ? 'Masquer le top 5 ' : 'Top 5 du mois ';
+    if(open) t5.scrollIntoView({block:'nearest'});
+  });
+
+  /* copy button */
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = document.getElementById(btn.dataset.copy);
+      var done = function(){ btn.textContent = 'Copié'; setTimeout(function(){ btn.textContent = 'Copier'; }, 1600); };
+      var sel = function(){ var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(el.textContent.trim()).then(done, sel); } catch(e){ sel(); }
+    });
+  });
+})();
+</script>
 </body>
 </html>
